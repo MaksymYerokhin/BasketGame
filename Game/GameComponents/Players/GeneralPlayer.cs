@@ -3,7 +3,7 @@ using System.Threading;
 
 namespace Game.GameComponents.Players
 {
-    public abstract class GeneralPlayer
+    public abstract class GeneralPlayer : IRandomStrategy
     {
         private Thread _executingThread;
 

@@ -4,7 +4,7 @@ namespace Game.GameComponents.Players
 {
     public class MemoryPlayer : RandomPlayer
     {
-        private HashSet<int> _memorizedNumbers;
+        protected HashSet<int> _memorizedNumbers;
 
         public MemoryPlayer(string name) : base(name)
         {

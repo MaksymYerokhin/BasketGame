@@ -48,6 +48,8 @@
     <Compile Include="GameComponents\GameRestriction.cs" />
     <Compile Include="GameComponents\Input.cs" />
     <Compile Include="GameComponents\Game.cs" />
+    <Compile Include="GameComponents\IRandomStrategy.cs" />
+    <Compile Include="GameComponents\IThoroughStrategy.cs" />
     <Compile Include="GameComponents\PlayerNumberEventArgs.cs" />
     <Compile Include="GameComponents\PlayersFactory.cs" />
     <Compile Include="GameComponents\Players\CheaterPlayer.cs" />

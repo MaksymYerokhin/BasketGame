@@ -13,6 +13,7 @@ namespace Game.GameComponents
         private ManualResetEvent _finilizeEvent;
         private Thread _finilizerThread;
 
+        public GeneralPlayer Winner { get; private set; }
         public GameRestriction restr;
 
         private object _syncObject = new object();
@@ -46,15 +47,18 @@ namespace Game.GameComponents
             var player = sender as GeneralPlayer;
             lock (_syncObject)
             {
-                if (args.GuessedNumber == _basket.Weight)
-                {
-                    Console.WriteLine(player.Name + "won!");
-                    Console.WriteLine(_basket.Weight);
-                    _finilizeEvent.Set();
-                }
-                else
-                {
-                    Console.WriteLine(String.Format("{0}: {1}", args.PlayerName, args.GuessedNumber));
+                if (Winner == null) {
+                    if (args.GuessedNumber == _basket.Weight)
+                    {
+                        Winner = player;
+                        Console.WriteLine(player.Name + " won!");
+                        Console.WriteLine(_basket.Weight);
+                        _finilizeEvent.Set();
+                    }
+                    else
+                    {
+                        Console.WriteLine(String.Format("{0}: {1}", args.PlayerName, args.GuessedNumber));
+                    }
                 }
             }
 

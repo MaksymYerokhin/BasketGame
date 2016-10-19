@@ -10,7 +10,7 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Players types:\n 1 - Thorough\n 2 - Memory\n 3 - Random");
+            Console.WriteLine("Players types:\n 1 - Thorough\n 2 - Memory\n 3 - Random\n 4 - Cheater");
             Console.WriteLine("Players number: ");
             int playersCount = Convert.ToInt32(Console.ReadLine());
             List<Input> l = new List<Input>(playersCount);
