@@ -1,0 +1,8 @@
+c:\users\maxim yerokhin\documents\visual studio 2015\Projects\Game\Game\bin\Debug\Game.exe.config
+c:\users\maxim yerokhin\documents\visual studio 2015\Projects\Game\Game\obj\Debug\Game.csprojResolveAssemblyReference.cache
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\Game.exe.config
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\Game.csprojResolveAssemblyReference.cache
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\Game.exe
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\Game.pdb
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\Game.exe
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\Game.pdb
