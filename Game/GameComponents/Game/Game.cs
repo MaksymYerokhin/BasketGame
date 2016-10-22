@@ -24,16 +24,20 @@ namespace Game.GameComponents
             restr = new GameRestriction(min, max);
 
             _players = new List<GeneralPlayer>();
-
-            // ?? mb not static
-            GeneralPlayer.OnNumberGueesed += OnNumberGuessedHandler;
-
+            
+            //GeneralPlayer.OnNumberGueesed += OnNumberGuessedHandler;
             _finilizerThread = new Thread(FinilizeProc);
             _finilizeEvent = new ManualResetEvent(false);
             _finilizerThread.Start();
 
             foreach (var input in inputs)
-                _players.Add(PlayersFactory.GetPlayer(input.Name, input.PlayerType));
+            {
+                var newPlayer = PlayersFactory.GetPlayer(input.Name, input.PlayerType);
+                _players.Add(newPlayer);
+                newPlayer.OnNumberGueesed += OnNumberGuessedHandler;
+
+            }
+
         }
 
         public void Play()
@@ -47,7 +51,8 @@ namespace Game.GameComponents
             var player = sender as GeneralPlayer;
             lock (_syncObject)
             {
-                if (Winner == null) {
+                if (Winner == null)
+                {
                     if (args.GuessedNumber == _basket.Weight)
                     {
                         Winner = player;

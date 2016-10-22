@@ -1,19 +1,11 @@
-﻿using System;
+﻿using Game.GameComponents.GuessStrategies;
 
 namespace Game.GameComponents.Players
 {
-    public class ThoroughPlayer : GeneralPlayer
+    public class ThoroughPlayer : GenericPlayer<IGuessStrategy>
     {
-        private int _currentNumber;
-
-        public ThoroughPlayer(string name) : base(name)
+        public ThoroughPlayer(string name, ThoroughGuessStrategy q) : base(name, q)
         {
-            _currentNumber = Restriction.Min;
-        }
-
-        protected override int GetNumber()
-        {
-            return _currentNumber++;
         }
     }
 }

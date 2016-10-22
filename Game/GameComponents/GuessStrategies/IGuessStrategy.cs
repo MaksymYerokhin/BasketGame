@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game.GameComponents
+namespace Game.GameComponents.Players
 {
-    interface IRandomStrategy
+    public interface IGuessStrategy
     {
-
+        int GuessNumber();
     }
 }

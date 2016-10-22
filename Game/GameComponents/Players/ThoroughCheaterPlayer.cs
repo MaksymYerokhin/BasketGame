@@ -1,16 +1,17 @@
-﻿using System;
+﻿using Game.GameComponents.GuessStrategies;
+using System;
 
 namespace Game.GameComponents.Players
 {
-    public class ThoroughCheaterPlayer : GeneralPlayer
+    public class ThoroughCheaterPlayer : CheaterPlayer
     {
-        public ThoroughCheaterPlayer(string name) : base(name)
+        public ThoroughCheaterPlayer(string name, ThoroughMemorizeGuessStrategy s) : base(name, s)
         {
         }
 
-        protected override int GetNumber()
-        {
-            throw new NotImplementedException();
-        }
+        //protected override int GuessNumber()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

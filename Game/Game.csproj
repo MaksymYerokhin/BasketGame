@@ -43,17 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameComponents\Basket.cs" />
-    <Compile Include="GameComponents\ConcurrentRandom.cs" />
-    <Compile Include="GameComponents\GameRestriction.cs" />
+    <Compile Include="GameComponents\Game\Basket.cs" />
+    <Compile Include="GameComponents\GuessStrategies\GenericGuessStrategy.cs" />
+    <Compile Include="GameComponents\GuessStrategies\GuessStrategiesFactory.cs" />
+    <Compile Include="GameComponents\GuessStrategies\GuessStrategiesTypes.cs" />
+    <Compile Include="GameComponents\GuessStrategies\ICheaterStrategy.cs" />
+    <Compile Include="GameComponents\GuessStrategies\MemorizeGuessStrategy.cs" />
+    <Compile Include="GameComponents\GuessStrategies\RandomGuessStrategy.cs" />
+    <Compile Include="GameComponents\GuessStrategies\ThoroughGuessStrategy.cs" />
+    <Compile Include="GameComponents\GuessStrategies\ThoroughMemorizeGuessStrategy.cs" />
+    <Compile Include="GameComponents\Helpers\ConcurrentRandom.cs" />
+    <Compile Include="GameComponents\Game\GameRestriction.cs" />
     <Compile Include="GameComponents\Input.cs" />
-    <Compile Include="GameComponents\Game.cs" />
-    <Compile Include="GameComponents\IRandomStrategy.cs" />
-    <Compile Include="GameComponents\IThoroughStrategy.cs" />
-    <Compile Include="GameComponents\PlayerNumberEventArgs.cs" />
+    <Compile Include="GameComponents\Game\Game.cs" />
+    <Compile Include="GameComponents\Players\PlayerNumberEventArgs.cs" />
     <Compile Include="GameComponents\PlayersFactory.cs" />
     <Compile Include="GameComponents\Players\CheaterPlayer.cs" />
-    <Compile Include="GameComponents\Players\GeneralPlayer.cs" />
+    <Compile Include="GameComponents\Players\GenericPlayer.cs" />
+    <Compile Include="GameComponents\Players\IFink.cs" />
+    <Compile Include="GameComponents\GuessStrategies\IGuessStrategy.cs" />
     <Compile Include="GameComponents\Players\MemoryPlayer.cs" />
     <Compile Include="GameComponents\Players\RandomPlayer.cs" />
     <Compile Include="GameComponents\Players\ThoroughCheaterPlayer.cs" />

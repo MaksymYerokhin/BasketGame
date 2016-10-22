@@ -1,19 +1,11 @@
-﻿using System;
+﻿using Game.GameComponents.GuessStrategies;
 
 namespace Game.GameComponents.Players
 {
-    public class RandomPlayer : GeneralPlayer
+    public class RandomPlayer : GenericPlayer<IGuessStrategy>
     {
-        public RandomPlayer(string name) : base(name)
+        public RandomPlayer(string name, RandomGuessStrategy q) : base(name, q)
         {
-        }
-        
-        protected override int GetNumber()
-        {
-            int min = Restriction.Min;
-            int max = Restriction.Max;
-            
-            return ConcurrentRandom.Generate(min, max);
         }
     }
 }

@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Threading;
+using Game.GameComponents.GuessStrategies;
 
 namespace Game.GameComponents.Players
 {
-    public abstract class GeneralPlayer : IRandomStrategy
+    public abstract class GenericPlayer<TGuessStrategy>
+        where TGuessStrategy : IGuessStrategy
     {
         private Thread _executingThread;
+
+        protected TGuessStrategy _guessStrategy;
 
         public GameRestriction Restriction { get; private set; }
 
         public string Name { get; private set; }
 
-        public static event EventHandler<PlayerNumberEventArgs> OnNumberGueesed;
+        public event EventHandler<PlayerNumberEventArgs> OnNumberGueesed;
 
-        public GeneralPlayer(string name)
+        public GenericPlayer(string name, TGuessStrategy guessStrategy)
         {
+            _guessStrategy = guessStrategy;
             Name = name;
             _executingThread = new Thread(ThreadProc);
         }
@@ -40,13 +45,13 @@ namespace Game.GameComponents.Players
             }
         }
 
-        protected abstract int GetNumber();
+        //protected abstract int GuessNumber();
 
         protected virtual void ThreadProc()
         {
             while (true)
             {
-                var number = GetNumber();
+                var number = _guessStrategy.GuessNumber();
                 if (OnNumberGueesed != null)
                     OnNumberGueesed(this, new PlayerNumberEventArgs(number, this.Name));
             }

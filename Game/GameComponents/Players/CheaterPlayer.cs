@@ -3,47 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Game.GameComponents;
+using Game.GameComponents.GuessStrategies;
 
 namespace Game.GameComponents.Players
 {
-    public class CheaterPlayer : MemoryPlayer
+    public class CheaterPlayer : MemoryPlayer, IFink
     {
-        public CheaterPlayer(string name) : base(name)
+        public CheaterPlayer(string name, MemorizeGuessStrategy r) : base(name, r)
         {
-            GeneralPlayer.OnNumberGueesed += OnNumberGuessedHandler;
         }
 
-        protected override int GetNumber()
-        {
-            int min = Restriction.Min;
-            int max = Restriction.Max;
-            int maxSteps = max - min + 1;
-            int selectedNumber = min;
+        //protected override int GetNumber()
+        //{
+        //    int min = Restriction.Min;
+        //    int max = Restriction.Max;
+        //    int maxSteps = max - min + 1;
+        //    int selectedNumber = min;
 
-            while (maxSteps > 0)
-            {
-                maxSteps--;
-                selectedNumber = base.GetNumber();
-                bool contains = false;
-                lock (_memorizedNumbers)
-                {
-                    contains = _memorizedNumbers.Contains(selectedNumber);
-                }
-                if (!contains)
-                {
-                    break;
-                }
-            }
+        //    while (maxSteps > 0)
+        //    {
+        //        maxSteps--;
+        //        selectedNumber = base.GetNumber();
+        //        bool contains = false;
+        //        lock (_memorizedNumbers)
+        //        {
+        //            contains = _memorizedNumbers.Contains(selectedNumber);
+        //        }
+        //        if (!contains)
+        //        {
+        //            break;
+        //        }
+        //    }
             
-            return selectedNumber;
-        }
-
-        public void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args)
+        //    return selectedNumber;
+        //}
+        
+        public void SubscribeToOtherPlayersGuesses(List<GenericPlayer<IGuessStrategy>> list)
         {
-            lock (_memorizedNumbers)
-            {
-                _memorizedNumbers.Add(args.GuessedNumber);
-            }
+            list.ForEach(x => {
+                x.OnNumberGueesed += _guessStrategy.OnNumberGuessedHandler;
+            });
         }
     }
 }
