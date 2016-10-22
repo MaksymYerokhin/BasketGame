@@ -1,11 +1,8 @@
-﻿using System;
+﻿using BasketGame.Core;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Game.GameComponents;
 
-namespace Game
+namespace BasketGame
 {
     class Program
     {
@@ -21,10 +18,10 @@ namespace Game
                 string name = Console.ReadLine();
                 Console.WriteLine(String.Format("Enter Player {0} type: ", i));
                 PlayerType type = (PlayerType)Convert.ToInt32(Console.ReadLine());
-                l.Add(new GameComponents.Input(name, type));
+                l.Add(new Input(name, type));
             }
 
-            Game.GameComponents.Game game = new Game.GameComponents.Game();
+            Game game = new Game();
             game.Initialize(l, 40, 140);
             game.Play();
         }

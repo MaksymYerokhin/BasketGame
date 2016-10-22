@@ -1,17 +1,11 @@
-﻿using Game.GameComponents.GuessStrategies;
-using System;
+﻿using BasketGame.Core.GuessStrategies;
 
-namespace Game.GameComponents.Players
+namespace BasketGame.Core.Players
 {
     public class ThoroughCheaterPlayer : CheaterPlayer
     {
         public ThoroughCheaterPlayer(string name, ThoroughMemorizeGuessStrategy s) : base(name, s)
         {
         }
-
-        //protected override int GuessNumber()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }

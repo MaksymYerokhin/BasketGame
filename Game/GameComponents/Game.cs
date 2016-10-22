@@ -1,19 +1,20 @@
-﻿using Game.GameComponents.Players;
+﻿using BasketGame.Core.GuessStrategies;
+using BasketGame.Core.Players;
 using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Game.GameComponents
+namespace BasketGame.Core
 {
     public class Game
     {
-        private List<GeneralPlayer> _players;
+        private List<GenericPlayer<IGuessStrategy>> _players;
         private Basket _basket;
 
         private ManualResetEvent _finilizeEvent;
         private Thread _finilizerThread;
 
-        public GeneralPlayer Winner { get; private set; }
+        public GenericPlayer<IGuessStrategy> Winner { get; private set; }
         public GameRestriction restr;
 
         private object _syncObject = new object();
@@ -23,7 +24,7 @@ namespace Game.GameComponents
             _basket = new Basket(min, max);
             restr = new GameRestriction(min, max);
 
-            _players = new List<GeneralPlayer>();
+            _players = new List<GenericPlayer<IGuessStrategy>>();
             
             //GeneralPlayer.OnNumberGueesed += OnNumberGuessedHandler;
             _finilizerThread = new Thread(FinilizeProc);
@@ -48,7 +49,7 @@ namespace Game.GameComponents
 
         public void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args)
         {
-            var player = sender as GeneralPlayer;
+            var player = sender as GenericPlayer<IGuessStrategy>;
             lock (_syncObject)
             {
                 if (Winner == null)

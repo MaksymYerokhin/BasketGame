@@ -1,11 +1,6 @@
-﻿using Game.GameComponents.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
-namespace Game.GameComponents.GuessStrategies
+namespace BasketGame.Core.GuessStrategies
 {
     public class ThoroughGuessStrategy : GenericGuessStrategy
     {
@@ -19,7 +14,7 @@ namespace Game.GameComponents.GuessStrategies
         public override int GuessNumber()
         {
             if (_max < _currentValue) {
-                _currentValue = _min;
+                throw new InvalidOperationException("Can't generate more numbers because the upper bound has been reached.");
             }
             return _currentValue++;
         }

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using BasketGame.Core.Helpers;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BasketGame.Core.Players;
+using System;
 
-namespace Game.GameComponents.GuessStrategies
+namespace BasketGame.Core.GuessStrategies
 {
     public class MemorizeGuessStrategy : GenericGuessStrategy, ICheaterStrategy
     {
-        protected List<int> _numbersToGuess;
+        protected readonly List<int> _numbersToGuess;
 
         public MemorizeGuessStrategy(GameRestriction res) : base(res)
         {

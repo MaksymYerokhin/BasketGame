@@ -1,4 +1,6 @@
-﻿namespace Game.GameComponents
+﻿using BasketGame.Core.Helpers;
+
+namespace BasketGame.Core
 {
     class Basket
     {

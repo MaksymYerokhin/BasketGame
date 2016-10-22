@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game.GameComponents
+namespace BasketGame.Core.Players
 {
     public class PlayerNumberEventArgs : EventArgs
     {

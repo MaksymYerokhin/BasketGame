@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading;
-using Game.GameComponents.GuessStrategies;
+using BasketGame.Core.GuessStrategies;
 
-namespace Game.GameComponents.Players
+namespace BasketGame.Core.Players
 {
     public abstract class GenericPlayer<TGuessStrategy>
         where TGuessStrategy : IGuessStrategy
@@ -44,9 +44,7 @@ namespace Game.GameComponents.Players
                 _executingThread = null;
             }
         }
-
-        //protected abstract int GuessNumber();
-
+        
         protected virtual void ThreadProc()
         {
             while (true)

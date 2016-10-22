@@ -1,11 +1,6 @@
-﻿using Game.GameComponents.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BasketGame.Core.Helpers;
 
-namespace Game.GameComponents.GuessStrategies
+namespace BasketGame.Core.GuessStrategies
 {
     public class RandomGuessStrategy : GenericGuessStrategy
     {

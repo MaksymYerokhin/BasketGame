@@ -1,6 +1,6 @@
-﻿using Game.GameComponents.GuessStrategies;
+﻿using BasketGame.Core.GuessStrategies;
 
-namespace Game.GameComponents.Players
+namespace BasketGame.Core.Players
 {
     public class ThoroughPlayer : GenericPlayer<IGuessStrategy>
     {
