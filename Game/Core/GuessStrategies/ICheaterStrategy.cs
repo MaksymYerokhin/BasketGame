@@ -2,7 +2,7 @@
 
 namespace BasketGame.Core.GuessStrategies
 {
-    public interface ICheaterStrategy
+    public interface ICheaterStrategy : IGuessStrategy
     {
         void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args);
     }

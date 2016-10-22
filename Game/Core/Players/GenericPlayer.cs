@@ -17,6 +17,11 @@ namespace BasketGame.Core.Players
 
         public event EventHandler<PlayerNumberEventArgs> OnNumberGueesed;
 
+        //public static explicit operator GenericPlayer<TGuessStrategy>(CheaterPlayer v)
+        //{
+        //    return new GenericPlayer<TGuessStrategy>(v.Name, (IGuessStrategy)v._guessStrategy);
+        //}
+
         public GenericPlayer(string name, TGuessStrategy guessStrategy)
         {
             _guessStrategy = guessStrategy;

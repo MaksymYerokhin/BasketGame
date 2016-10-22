@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using BasketGame.Core.Players;
-using System;
 
 namespace BasketGame.Core.GuessStrategies
 {

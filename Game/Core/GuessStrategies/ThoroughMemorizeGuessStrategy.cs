@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using BasketGame.Core.Players;
 
 namespace BasketGame.Core.GuessStrategies
