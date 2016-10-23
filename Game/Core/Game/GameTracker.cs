@@ -19,7 +19,8 @@ namespace BasketGame.Core.Game
                     if (!State.Finished && State.Winner == null && State.AttemptsNumber < Restriction.MaxAttempts)
                     {
                         State.AttemptsNumber++;
-                        Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
+                        // Logging
+                        // Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
                         if (args.GuessedNumber == _basket.Weight)
                         {
                             State.Winner = player;
