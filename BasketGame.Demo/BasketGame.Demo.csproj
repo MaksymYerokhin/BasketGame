@@ -50,7 +50,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Game\BasketGame.Core.csproj">
+    <ProjectReference Include="..\BasketGame.Core\BasketGame.Core.csproj">
       <Project>{a68363a5-8c17-454d-b40c-ea6357d079f4}</Project>
       <Name>BasketGame.Core</Name>
     </ProjectReference>

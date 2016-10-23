@@ -1,6 +1,0 @@
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.pdb
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.pdb
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.dll.config
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.dll
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.dll
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.Core.csprojResolveAssemblyReference.cache
