@@ -2,6 +2,8 @@
 {
     public interface IGuessStrategy
     {
+        bool canGuess { get; set; }
+
         int GuessNumber();
     }
 }

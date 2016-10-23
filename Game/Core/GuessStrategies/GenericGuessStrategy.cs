@@ -8,6 +8,8 @@ namespace BasketGame.Core.GuessStrategies
 
         protected readonly int _max;
 
+        public bool canGuess { get; set; } = true;
+
         public GenericGuessStrategy(GameRestriction res)
         {
             _min = res.MinWeight;

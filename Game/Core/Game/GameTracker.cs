@@ -19,7 +19,7 @@ namespace BasketGame.Core.Game
                     if (!State.Finished && State.Winner == null && State.AttemptsNumber < Restriction.MaxAttempts)
                     {
                         State.AttemptsNumber++;
-                        //Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
+                        Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
                         if (args.GuessedNumber == _basket.Weight)
                         {
                             State.Winner = player;
@@ -34,6 +34,11 @@ namespace BasketGame.Core.Game
                                 State.ClosestGuess = args.GuessedNumber;
                             }
                         }
+                    }
+                    else
+                    {
+                        StopPlayersGuessing();
+                        _finilizeEvent.Set();
                     }
                 }
 
@@ -52,8 +57,16 @@ namespace BasketGame.Core.Game
             foreach (var player in Players)
                 player.Abort();
 
+            // This signal is used for timeout case
             _finilizeEvent.Set();
+
             Thread.CurrentThread.Abort();
+        }
+
+        private void StopPlayersGuessing()
+        {
+            foreach (var player in Players)
+                player.StopGuessing();
         }
     }
 }

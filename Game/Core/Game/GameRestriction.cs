@@ -25,9 +25,9 @@ namespace BasketGame.Core.Game
             MinPlayers = (int)minPlayers;
             MaxPlayers = (int)maxPlayers;
 
-            if (minWeight > maxWeight)
+            if (minWeight >= maxWeight)
             {
-                throw new ArgumentException("Minimum weight must be equal or less than maximum", "minPlayers");
+                throw new ArgumentException("Minimum weight must be less than maximum", "minPlayers");
             }
             MinWeight = (int)minWeight;
             MaxWeight = (int)maxWeight;

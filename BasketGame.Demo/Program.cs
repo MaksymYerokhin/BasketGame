@@ -10,23 +10,22 @@ namespace BasketGame.Demo
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
+            var game = new Game();
             Console.WriteLine("Players types:\n 0 - Thorough\n 1 - Memory\n 2 - Random\n 3 - Cheater\n 4 - Thorough Cheater\n");
-            string[] names = { "Max", "Reidan", "Alexander" };
-            Console.Write("Players number: ");
-            int playersCount = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter players number: ");
+            var playersNumber = Convert.ToInt32(Console.ReadLine());
 
-            List<PlayerInfo> players = new List<PlayerInfo>(playersCount);
-            for (int i = 0; i < playersCount; i++)
+            List<PlayerInfo> players = new List<PlayerInfo>(playersNumber);
+            for (int i = 0; i < playersNumber; i++)
             {
-                //Console.Write(String.Format("Enter Player {0} name: ", i + 1));
-                string name = names[i];//Console.ReadLine();
+                Console.Write(String.Format("Enter Player {0} name: ", i + 1));
+                var name = Console.ReadLine();
                 Console.Write(String.Format("Enter Player {0} type: ", i + 1));
-                PlayerType type = (PlayerType)Convert.ToInt32(Console.ReadLine());
+                var type = (PlayerType)Convert.ToInt32(Console.ReadLine());
                 players.Add(new PlayerInfo(name, type));
             }
 
-            game.Initialize(players, new GameRestriction(1, 8, 40, 60, 14, 1500));
+            game.Initialize(players, new GameRestriction(2, 8, 40, 800, 100, 5000));
             Console.WriteLine(game.Announcer.AnnounceInitialData());
             var result = game.Play();
             Console.WriteLine(result);

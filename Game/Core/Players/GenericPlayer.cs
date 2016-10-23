@@ -20,15 +20,12 @@ namespace BasketGame.Core.Players
 
         protected virtual void ThreadProc()
         {
-            while (true)
+            while (_guessStrategy.canGuess)
             {
-                lock (_sync)
+                var number = _guessStrategy.GuessNumber();
+                if (OnNumberGueesed != null)
                 {
-                    var number = _guessStrategy.GuessNumber();
-                    if (OnNumberGueesed != null)
-                    {
-                        OnNumberGueesed(this, new PlayerGuessEventArgs(number, this.Name));
-                    }
+                    OnNumberGueesed(this, new PlayerGuessEventArgs(number, this.Name));
                 }
             }
         }
@@ -46,8 +43,15 @@ namespace BasketGame.Core.Players
             _executingThread.Start();
         }
 
+        public void StopGuessing()
+        {
+            _guessStrategy.canGuess = false;
+        }
+
         public void Wait(int delta)
         {
+            // This method is raised in event handler
+            // so it is _executingThread there
             Thread.Sleep(delta);
         }
 
