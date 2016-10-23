@@ -7,41 +7,52 @@ namespace BasketGame.Core.Game
 {
     public partial class Game
     {
-        public void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
+        private void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             var player = sender as GenericPlayer<IGuessStrategy>;
-            lock (_syncObject)
+            if (player != null)
             {
-                _attemptsCount++;
-                if (Winner == null)
+                var currentDelta = Math.Abs(_basket.Weight - args.GuessedNumber);
+
+                lock (State)
                 {
-                    if (args.GuessedNumber == _basket.Weight || _attemptsCount >= Restriction.MaxAttempts)
+                    if (!State.Finished && State.Winner == null && State.AttemptsNumber < Restriction.MaxAttempts)
                     {
-                        Winner = player;
-                        _finilizeEvent.Set();
-                    }
-                    else
-                    {
-                        Console.WriteLine(String.Format("{0}: {1}", args.PlayerName, args.GuessedNumber));
+                        State.AttemptsNumber++;
+                        Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
+                        if (args.GuessedNumber == _basket.Weight)
+                        {
+                            State.Winner = player;
+                            _finilizeEvent.Set();
+                        }
+                        else
+                        {
+                            var previousDelta = Math.Abs(_basket.Weight - State.ClosestGuess);
+                            if (previousDelta > currentDelta || State.ClosestPlayer == null)
+                            {
+                                State.ClosestPlayer = player;
+                                State.ClosestGuess = args.GuessedNumber;
+                            }
+                        }
                     }
                 }
-            }
 
-            var delta = Math.Abs(_basket.Weight - args.GuessedNumber);
-            player.Wait(delta);
+                player.Wait(currentDelta);
+            }
         }
 
-        public void FinilizeProc()
+        private void FinalizeProc()
         {
-            _finilizeEvent.WaitOne();
+            _finilizeEvent.WaitOne(Restriction.MaxMilliseconds);
+            lock (State)
+            {
+                State.Finished = true;
+            }
 
             foreach (var player in Players)
                 player.Abort();
 
-            Console.WriteLine(Winner.Name + " won!");
-            Console.WriteLine(_attemptsCount);
-            Console.WriteLine(_basket.Weight);
-
+            _finilizeEvent.Set();
             Thread.CurrentThread.Abort();
         }
     }

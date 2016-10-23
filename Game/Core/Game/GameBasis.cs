@@ -8,42 +8,44 @@ namespace BasketGame.Core.Game
 {
     public partial class Game
     {
-        #region private fields
-        
-        private Basket _basket;
+        private object _sync = new object();
 
-        private int _attemptsCount;
+        private Basket _basket;
 
         private ManualResetEvent _finilizeEvent;
 
-        private object _syncObject = new object();
-
         private Thread _finilizerThread;
 
-        private bool _initialized;
+        private readonly GameState State;
 
-        #endregion
+        public IGameAnnouncer Announcer;
 
-        public ICollection<GenericPlayer<IGuessStrategy>> Players { get; private set; }
-
-        public GenericPlayer<IGuessStrategy> Winner { get; private set; }
+        public List<GenericPlayer<IGuessStrategy>> Players { get; private set; }
 
         public GameRestriction Restriction { get; private set; }
 
-        public void Play()
+        public Game()
         {
-            if (_initialized && !_finilizerThread.IsAlive)
+            State = new GameState();
+        }
+
+        public string Play()
+        {
+            if (State.Initialized && !_finilizerThread.IsAlive)
             {
                 _finilizeEvent.Reset();
                 _finilizerThread.Start();
 
                 foreach (var player in Players)
-                    player.Start(Restriction);
+                    player.Start(Restriction, _sync);
             }
             else
             {
                 throw new InvalidOperationException("Game instance is not initialized or already running");
             }
+
+            _finilizeEvent.WaitOne();
+            return Announcer.AnnounceFinalData(State);
         }
 
         public void Stop()

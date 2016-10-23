@@ -14,10 +14,10 @@ namespace BasketGame.Core.GuessStrategies
 
         public override int GuessNumber()
         {
-            if (_max < _currentValue) {
+            if (_max <= _currentValue) {
                 throw new InvalidOperationException("Can't generate more numbers because the upper bound has been reached.");
             }
-            return _currentValue++;
+            return ++_currentValue;
         }
     }
 }

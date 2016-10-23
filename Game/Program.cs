@@ -10,22 +10,26 @@ namespace BasketGame
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Players types:\n 1 - Thorough\n 2 - Memory\n 3 - Random\n 4 - Cheater");
-            Console.WriteLine("Players number: ");
+            Game game = new Game();
+            Console.WriteLine("Players types:\n 0 - Thorough\n 1 - Memory\n 2 - Random\n 3 - Cheater\n 4 - Thorough Cheater\n");
+            string[] names = { "Max", "Reidan", "Alexander" };
+            Console.Write("Players number: ");
             int playersCount = Convert.ToInt32(Console.ReadLine());
-            List<Input> l = new List<Input>(playersCount);
+
+            List<PlayerInfo> players = new List<PlayerInfo>(playersCount);
             for (int i = 0; i < playersCount; i++)
             {
-                Console.WriteLine(String.Format("Enter Player {0} name: ", i));
-                string name = Console.ReadLine();
-                Console.WriteLine(String.Format("Enter Player {0} type: ", i));
+                //Console.Write(String.Format("Enter Player {0} name: ", i + 1));
+                string name = names[i];//Console.ReadLine();
+                Console.Write(String.Format("Enter Player {0} type: ", i + 1));
                 PlayerType type = (PlayerType)Convert.ToInt32(Console.ReadLine());
-                l.Add(new Input(name, type));
+                players.Add(new PlayerInfo(name, type));
             }
 
-            Game game = new Game();
-            game.Initialize(l, new GameRestriction(2, 8, 40, 140, 100, 1500));
-            game.Play();
+            game.Initialize(players, new GameRestriction(1, 8, 40, 60, 14, 1500));
+            Console.WriteLine(game.Announcer.AnnounceInitialData());
+            var result = game.Play();
+            Console.WriteLine(result);
         }
     }
 }

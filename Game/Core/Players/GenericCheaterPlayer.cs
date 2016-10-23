@@ -9,12 +9,12 @@ namespace BasketGame.Core.Players
         {
         }
 
-        public void SubscribeToOtherPlayersGuesses(List<GenericPlayer<IGuessStrategy>> list)
+        public void SubscribeToOtherPlayersGuesses(List<GenericPlayer<IGuessStrategy>> players)
         {
-            list.ForEach(x => {
+            players.ForEach(player => {
                 var guessStrategy = _guessStrategy as ICheaterStrategy;
                 if (guessStrategy != null) {
-                    x.OnNumberGueesed += guessStrategy.OnNumberGuessedHandler;
+                    player.OnNumberGueesed += guessStrategy.OnNumberGuessedHandler;
                 }
             });
         }

@@ -10,20 +10,25 @@ namespace BasketGame.Core.Players
     {
         private Thread _executingThread;
 
+        private object _sync;
+
         protected TGuessStrategy _guessStrategy;
-        
+
         public string Name { get; private set; }
-        
+
         public event EventHandler<PlayerGuessEventArgs> OnNumberGueesed;
 
         protected virtual void ThreadProc()
         {
             while (true)
             {
-                var number = _guessStrategy.GuessNumber();
-                if (OnNumberGueesed != null)
+                lock (_sync)
                 {
-                    OnNumberGueesed(this, new PlayerGuessEventArgs(number, this.Name));
+                    var number = _guessStrategy.GuessNumber();
+                    if (OnNumberGueesed != null)
+                    {
+                        OnNumberGueesed(this, new PlayerGuessEventArgs(number, this.Name));
+                    }
                 }
             }
         }
@@ -35,8 +40,9 @@ namespace BasketGame.Core.Players
             _executingThread = new Thread(ThreadProc);
         }
 
-        public void Start(GameRestriction g)
+        public void Start(GameRestriction g, object sync)
         {
+            _sync = sync;
             _executingThread.Start();
         }
 

@@ -8,13 +8,14 @@ namespace BasketGame.Core.Players
     public static class PlayersFactory
     {
         private static readonly Dictionary<PlayerType, Func<string, GenericPlayer<IGuessStrategy>>> playerCreators = new Dictionary<PlayerType, Func<string, GenericPlayer<IGuessStrategy>>>();
-        
-        public static void PreparePlayersType(GameRestriction restriction) {
-            playerCreators.Add(PlayerType.Cheater, nam => new CheaterPlayer(nam, new MemorizeGuessStrategy(restriction)));
-            playerCreators.Add(PlayerType.Memory, nam => new MemoryPlayer(nam, new MemorizeGuessStrategy(restriction)));
-            playerCreators.Add(PlayerType.Random, nam => new RandomPlayer(nam, new RandomGuessStrategy(restriction)));
-            playerCreators.Add(PlayerType.Thorough, nam => new ThoroughPlayer(nam, new ThoroughGuessStrategy(restriction)));
-            playerCreators.Add(PlayerType.ThoroughCheater, nam => new ThoroughCheaterPlayer(nam, new ThoroughMemorizeGuessStrategy(restriction)));
+
+        public static void PreparePlayersType(GameRestriction restriction)
+        {
+            playerCreators.Add(PlayerType.Cheater, name => new CheaterPlayer(name, new MemorizeGuessStrategy(restriction)));
+            playerCreators.Add(PlayerType.Memory, name => new MemoryPlayer(name, new MemorizeGuessStrategy(restriction)));
+            playerCreators.Add(PlayerType.Random, name => new RandomPlayer(name, new RandomGuessStrategy(restriction)));
+            playerCreators.Add(PlayerType.Thorough, name => new ThoroughPlayer(name, new ThoroughGuessStrategy(restriction)));
+            playerCreators.Add(PlayerType.ThoroughCheater, name => new ThoroughCheaterPlayer(name, new ThoroughMemorizeGuessStrategy(restriction)));
         }
 
         public static GenericPlayer<IGuessStrategy> GetPlayer(string name, PlayerType type)
@@ -22,10 +23,12 @@ namespace BasketGame.Core.Players
             Func<string, GenericPlayer<IGuessStrategy>> creator;
             if (playerCreators.TryGetValue(type, out creator))
             {
-                creator(name);
+                return creator(name);
             }
-
-            throw new ArgumentException("There is no registered function to create player for the specified type.", "type");
+            else
+            {
+                throw new ArgumentException("There is no player type as selected in parameter or there is no delegate added for it", "type");
+            }
         }
     }
 }

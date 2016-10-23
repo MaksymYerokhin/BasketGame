@@ -6,7 +6,7 @@ namespace BasketGame.Core.GuessStrategies
 {
     public class ThoroughMemorizeGuessStrategy : ThoroughGuessStrategy, ICheaterStrategy
     {
-        List<int> _memorizedNumbers = new List<int>();
+        protected List<int> _memorizedNumbers = new List<int>();
 
         public ThoroughMemorizeGuessStrategy(GameRestriction res) : base(res)
         {
@@ -20,15 +20,17 @@ namespace BasketGame.Core.GuessStrategies
                 guessedNumber = base.GuessNumber();
             }
             while (_memorizedNumbers.Contains(guessedNumber));
-
-            return base.GuessNumber();
+            return guessedNumber;
         }
 
         public void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             lock (_memorizedNumbers)
             {
-                _memorizedNumbers.Add(args.GuessedNumber);
+                if (!_memorizedNumbers.Contains(args.GuessedNumber))
+                {
+                    _memorizedNumbers.Add(args.GuessedNumber);
+                }
             }
         }
     }
