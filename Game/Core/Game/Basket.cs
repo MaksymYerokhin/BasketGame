@@ -1,10 +1,10 @@
 ﻿using BasketGame.Core.Helpers;
 
-namespace BasketGame.Core
+namespace BasketGame.Core.Game
 {
-    class Basket
+    public class Basket
     {
-        public int Weight { get; private set; }
+        public readonly int Weight;
 
         public Basket(int min, int max)
         {

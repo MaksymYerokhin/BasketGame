@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BasketGame.Core.Game;
+using System;
 
 namespace BasketGame.Core.GuessStrategies
 {
@@ -8,7 +9,7 @@ namespace BasketGame.Core.GuessStrategies
 
         public ThoroughGuessStrategy(GameRestriction res) : base(res)
         {
-            _currentValue = res.Min;
+            _currentValue = res.MinWeight;
         }
 
         public override int GuessNumber()

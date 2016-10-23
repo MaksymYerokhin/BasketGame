@@ -2,13 +2,13 @@
 
 namespace BasketGame.Core.Players
 {
-    public class PlayerNumberEventArgs : EventArgs
+    public class PlayerGuessEventArgs : EventArgs
     {
-        public int GuessedNumber { get; private set; }
+        public readonly int GuessedNumber;
 
-        public string PlayerName { get; private set; }
+        public readonly string PlayerName;
 
-        public PlayerNumberEventArgs(int guessedNumber, string name)
+        public PlayerGuessEventArgs(int guessedNumber, string name)
         {
             GuessedNumber = guessedNumber;
             PlayerName = name;

@@ -4,6 +4,6 @@ namespace BasketGame.Core.GuessStrategies
 {
     public interface ICheaterStrategy : IGuessStrategy
     {
-        void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args);
+        void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args);
     }
 }

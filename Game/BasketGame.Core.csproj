@@ -43,7 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Basket.cs" />
+    <Compile Include="Core\Game\Basket.cs" />
+    <Compile Include="Core\Game\GameInitializer.cs" />
+    <Compile Include="Core\Game\GameTracker.cs" />
     <Compile Include="Core\GuessStrategies\GenericGuessStrategy.cs" />
     <Compile Include="Core\GuessStrategies\ICheaterStrategy.cs" />
     <Compile Include="Core\GuessStrategies\MemorizeGuessStrategy.cs" />
@@ -51,17 +53,18 @@
     <Compile Include="Core\GuessStrategies\ThoroughGuessStrategy.cs" />
     <Compile Include="Core\GuessStrategies\ThoroughMemorizeGuessStrategy.cs" />
     <Compile Include="Core\Helpers\ConcurrentRandom.cs" />
-    <Compile Include="Core\GameRestriction.cs" />
+    <Compile Include="Core\Game\GameRestriction.cs" />
     <Compile Include="Core\Input.cs" />
-    <Compile Include="Core\Game.cs" />
+    <Compile Include="Core\Game\GameBasis.cs" />
     <Compile Include="Core\Players\GenericCheaterPlayer.cs" />
     <Compile Include="Core\Players\PlayerNumberEventArgs.cs" />
     <Compile Include="Core\Players\PlayersFactory.cs" />
     <Compile Include="Core\Players\CheaterPlayer.cs" />
     <Compile Include="Core\Players\GenericPlayer.cs" />
-    <Compile Include="Core\Players\IFink.cs" />
+    <Compile Include="Core\Players\ICheatingListener.cs" />
     <Compile Include="Core\GuessStrategies\IGuessStrategy.cs" />
     <Compile Include="Core\Players\MemoryPlayer.cs" />
+    <Compile Include="Core\Players\PlayerType.cs" />
     <Compile Include="Core\Players\RandomPlayer.cs" />
     <Compile Include="Core\Players\ThoroughCheaterPlayer.cs" />
     <Compile Include="Core\Players\ThoroughPlayer.cs" />
@@ -71,6 +74,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

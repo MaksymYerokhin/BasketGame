@@ -1,4 +1,5 @@
-﻿using BasketGame.Core.GuessStrategies;
+﻿using BasketGame.Core.Game;
+using BasketGame.Core.GuessStrategies;
 using System;
 using System.Collections.Generic;
 

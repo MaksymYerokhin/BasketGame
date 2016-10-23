@@ -1,4 +1,6 @@
 ﻿using BasketGame.Core;
+using BasketGame.Core.Game;
+using BasketGame.Core.Players;
 using System;
 using System.Collections.Generic;
 
@@ -22,7 +24,7 @@ namespace BasketGame
             }
 
             Game game = new Game();
-            game.Initialize(l, 40, 140);
+            game.Initialize(l, new GameRestriction(2, 8, 40, 140, 100, 1500));
             game.Play();
         }
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BasketGame.Core.Players
 {
-    public abstract class GenericCheaterPlayer : GenericPlayer<IGuessStrategy>, IFink
+    public abstract class GenericCheaterPlayer : GenericPlayer<IGuessStrategy>, ICheatingListener
     {
         public GenericCheaterPlayer(string name, ICheaterStrategy guessStrategy) : base(name, guessStrategy)
         {
@@ -12,7 +12,10 @@ namespace BasketGame.Core.Players
         public void SubscribeToOtherPlayersGuesses(List<GenericPlayer<IGuessStrategy>> list)
         {
             list.ForEach(x => {
-                x.OnNumberGueesed += _guessStrategy.OnNumberGuessedHandler;
+                var guessStrategy = _guessStrategy as ICheaterStrategy;
+                if (guessStrategy != null) {
+                    x.OnNumberGueesed += guessStrategy.OnNumberGuessedHandler;
+                }
             });
         }
     }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using BasketGame.Core.Players;
+using BasketGame.Core.Game;
 
 namespace BasketGame.Core.GuessStrategies
 {
@@ -20,7 +21,7 @@ namespace BasketGame.Core.GuessStrategies
             return _numbersToGuess[randomIndex];
         }
 
-        public void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args)
+        public void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             lock (_numbersToGuess)
             {

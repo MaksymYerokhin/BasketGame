@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using BasketGame.Core.Players;
+using BasketGame.Core.Game;
 
 namespace BasketGame.Core.GuessStrategies
 {
@@ -23,7 +24,7 @@ namespace BasketGame.Core.GuessStrategies
             return base.GuessNumber();
         }
 
-        public void OnNumberGuessedHandler(object sender, PlayerNumberEventArgs args)
+        public void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             lock (_memorizedNumbers)
             {

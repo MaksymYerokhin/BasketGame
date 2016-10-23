@@ -1,4 +1,5 @@
-﻿using BasketGame.Core.Helpers;
+﻿using BasketGame.Core.Game;
+using BasketGame.Core.Helpers;
 
 namespace BasketGame.Core.GuessStrategies
 {

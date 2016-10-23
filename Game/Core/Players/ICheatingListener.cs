@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BasketGame.Core.Players
 {
-    interface IFink
+    interface ICheatingListener
     {
         void SubscribeToOtherPlayersGuesses(List<GenericPlayer<IGuessStrategy>> list);
     }

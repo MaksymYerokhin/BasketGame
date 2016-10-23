@@ -1,4 +1,6 @@
-﻿namespace BasketGame.Core.GuessStrategies
+﻿using BasketGame.Core.Game;
+
+namespace BasketGame.Core.GuessStrategies
 {
     public abstract class GenericGuessStrategy : IGuessStrategy
     {
@@ -8,8 +10,8 @@
 
         public GenericGuessStrategy(GameRestriction res)
         {
-            _min = res.Min;
-            _max = res.Max;
+            _min = res.MinWeight;
+            _max = res.MaxWeight;
         }
 
         public abstract int GuessNumber();
