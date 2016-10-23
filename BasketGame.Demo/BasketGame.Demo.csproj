@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A68363A5-8C17-454D-B40C-EA6357D079F4}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{1C3B26E6-8710-4B83-A66E-EE6D03AC6E0F}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BasketGame</RootNamespace>
-    <AssemblyName>BasketGame</AssemblyName>
+    <RootNamespace>BasketGame.Demo</RootNamespace>
+    <AssemblyName>BasketGame.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -32,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,40 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Game\Basket.cs" />
-    <Compile Include="Core\Game\GameAnnouncer.cs" />
-    <Compile Include="Core\Game\GameInitializer.cs" />
-    <Compile Include="Core\Game\GameState.cs" />
-    <Compile Include="Core\Game\GameTracker.cs" />
-    <Compile Include="Core\Game\IGameAnnouncer.cs" />
-    <Compile Include="Core\GuessStrategies\GenericGuessStrategy.cs" />
-    <Compile Include="Core\GuessStrategies\ICheaterStrategy.cs" />
-    <Compile Include="Core\GuessStrategies\MemorizeGuessStrategy.cs" />
-    <Compile Include="Core\GuessStrategies\RandomGuessStrategy.cs" />
-    <Compile Include="Core\GuessStrategies\ThoroughGuessStrategy.cs" />
-    <Compile Include="Core\GuessStrategies\ThoroughMemorizeGuessStrategy.cs" />
-    <Compile Include="Core\Helpers\ConcurrentRandom.cs" />
-    <Compile Include="Core\Game\GameRestriction.cs" />
-    <Compile Include="Core\Game\PlayerInfo.cs" />
-    <Compile Include="Core\Game\GameBasis.cs" />
-    <Compile Include="Core\Players\GenericCheaterPlayer.cs" />
-    <Compile Include="Core\Players\PlayerNumberEventArgs.cs" />
-    <Compile Include="Core\Players\PlayersFactory.cs" />
-    <Compile Include="Core\Players\CheaterPlayer.cs" />
-    <Compile Include="Core\Players\GenericPlayer.cs" />
-    <Compile Include="Core\Players\ICheatingListener.cs" />
-    <Compile Include="Core\GuessStrategies\IGuessStrategy.cs" />
-    <Compile Include="Core\Players\MemoryPlayer.cs" />
-    <Compile Include="Core\Game\PlayerType.cs" />
-    <Compile Include="Core\Players\RandomPlayer.cs" />
-    <Compile Include="Core\Players\ThoroughCheaterPlayer.cs" />
-    <Compile Include="Core\Players\ThoroughPlayer.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Game\BasketGame.Core.csproj">
+      <Project>{a68363a5-8c17-454d-b40c-ea6357d079f4}</Project>
+      <Name>BasketGame.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,0 +1,8 @@
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\bin\Debug\BasketGame.Demo.exe.config
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\bin\Debug\BasketGame.Demo.exe
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\bin\Debug\BasketGame.Demo.pdb
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\bin\Debug\BasketGame.pdb
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\obj\Debug\BasketGame.Demo.csprojResolveAssemblyReference.cache
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\obj\Debug\BasketGame.Demo.exe
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\obj\Debug\BasketGame.Demo.pdb
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Demo\bin\Debug\BasketGame.dll

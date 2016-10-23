@@ -4,7 +4,7 @@ using BasketGame.Core.Players;
 using System;
 using System.Collections.Generic;
 
-namespace BasketGame
+namespace BasketGame.Demo
 {
     class Program
     {

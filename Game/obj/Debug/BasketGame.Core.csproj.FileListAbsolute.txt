@@ -1,5 +1,5 @@
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.exe.config
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.exe
 C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.pdb
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.exe
 C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.pdb
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.dll.config
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\bin\Debug\BasketGame.dll
+C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\Game\obj\Debug\BasketGame.dll
