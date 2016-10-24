@@ -1,6 +1,4 @@
-﻿using BasketGame.Core;
-using BasketGame.Core.Game;
-using BasketGame.Core.Players;
+﻿using BasketGame.Core.Game;
 using System;
 using System.Collections.Generic;
 
@@ -15,7 +13,7 @@ namespace BasketGame.Demo
             Console.Write("Enter players number: ");
             var playersNumber = Convert.ToInt32(Console.ReadLine());
 
-            List<PlayerInfo> players = new List<PlayerInfo>(playersNumber);
+            var players = new List<PlayerInfo>(playersNumber);
             for (int i = 0; i < playersNumber; i++)
             {
                 Console.Write(String.Format("Enter Player {0} name: ", i + 1));
@@ -25,7 +23,7 @@ namespace BasketGame.Demo
                 players.Add(new PlayerInfo(name, type));
             }
 
-            game.Initialize(players, new GameRestriction(2, 8, 40, 800, 100, 5000));
+            game.Initialize(players, new GameRestriction(2, 8, 40, 140, 100, 1500));
             Console.WriteLine(game.Announcer.AnnounceInitialData());
             var result = game.Play();
             Console.WriteLine(result);

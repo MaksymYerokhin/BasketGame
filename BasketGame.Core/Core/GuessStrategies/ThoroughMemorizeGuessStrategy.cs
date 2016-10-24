@@ -6,7 +6,7 @@ namespace BasketGame.Core.GuessStrategies
 {
     public class ThoroughMemorizeGuessStrategy : ThoroughGuessStrategy, ICheaterStrategy
     {
-        protected List<int> _memorizedNumbers = new List<int>();
+        private List<int> _memorizedNumbers = new List<int>();
 
         public ThoroughMemorizeGuessStrategy(GameRestriction res) : base(res)
         {

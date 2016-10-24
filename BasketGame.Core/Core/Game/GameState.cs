@@ -1,10 +1,5 @@
 ﻿using BasketGame.Core.GuessStrategies;
 using BasketGame.Core.Players;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BasketGame.Core.Game
 {

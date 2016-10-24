@@ -1,6 +1,4 @@
-﻿using BasketGame.Core.Players;
-
-namespace BasketGame.Core
+﻿namespace BasketGame.Core.Game
 {
     public class PlayerInfo
     {

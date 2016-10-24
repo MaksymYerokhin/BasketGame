@@ -12,7 +12,7 @@ namespace BasketGame.Core.Game
 
         private Basket _basket;
 
-        private ManualResetEvent _finilizeEvent;
+        private ManualResetEvent _finalizeEvent;
 
         private Thread _finilizerThread;
 
@@ -33,7 +33,7 @@ namespace BasketGame.Core.Game
         {
             if (State.Initialized && !_finilizerThread.IsAlive)
             {
-                _finilizeEvent.Reset();
+                _finalizeEvent.Reset();
                 _finilizerThread.Start();
 
                 foreach (var player in Players)
@@ -44,16 +44,20 @@ namespace BasketGame.Core.Game
                 throw new InvalidOperationException("Game instance is not initialized or already running");
             }
 
-            _finilizeEvent.WaitOne();
+            _finalizeEvent.WaitOne();
             return Announcer.AnnounceFinalData(State);
         }
 
         public void Stop()
         {
-            if (_finilizeEvent != null && _finilizerThread != null && _finilizerThread.IsAlive)
+            if (_finalizeEvent != null && _finilizerThread != null && _finilizerThread.IsAlive)
             {
-                _finilizeEvent.Set();
+                _finalizeEvent.Set();
             }
+        }
+
+        ~Game() {
+            _finalizeEvent.Dispose();
         }
     }
 }

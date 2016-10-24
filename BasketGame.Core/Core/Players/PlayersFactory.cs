@@ -25,10 +25,8 @@ namespace BasketGame.Core.Players
             {
                 return creator(name);
             }
-            else
-            {
-                throw new ArgumentException("There is no player type as selected in parameter or there is no delegate added for it", "type");
-            }
+            
+            throw new ArgumentException("There is no player type as selected in parameter or there is no delegate added for it", "type");
         }
     }
 }

@@ -23,7 +23,7 @@ namespace BasketGame.Core.Game
             Players = new List<GenericPlayer<IGuessStrategy>>(inputs.Count);
 
             _finilizerThread = new Thread(FinalizeProc);
-            _finilizeEvent = new ManualResetEvent(false);
+            _finalizeEvent = new ManualResetEvent(false);
 
             PlayersFactory.PreparePlayersType(restriction);
 

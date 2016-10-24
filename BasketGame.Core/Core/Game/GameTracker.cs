@@ -19,12 +19,11 @@ namespace BasketGame.Core.Game
                     if (!State.Finished && State.Winner == null && State.AttemptsNumber < Restriction.MaxAttempts)
                     {
                         State.AttemptsNumber++;
-                        // Logging
-                        // Console.WriteLine(String.Format("{0}: {1}", player.Name, args.GuessedNumber));
                         if (args.GuessedNumber == _basket.Weight)
                         {
                             State.Winner = player;
-                            _finilizeEvent.Set();
+                            // This signal is used for victory case
+                            _finalizeEvent.Set();
                         }
                         else
                         {
@@ -39,7 +38,8 @@ namespace BasketGame.Core.Game
                     else
                     {
                         StopPlayersGuessing();
-                        _finilizeEvent.Set();
+                        // This signal is used for attempts exceeded case
+                        _finalizeEvent.Set();
                     }
                 }
 
@@ -49,7 +49,7 @@ namespace BasketGame.Core.Game
 
         private void FinalizeProc()
         {
-            _finilizeEvent.WaitOne(Restriction.MaxMilliseconds);
+            _finalizeEvent.WaitOne(Restriction.MaxMilliseconds);
             lock (State)
             {
                 State.Finished = true;
@@ -59,7 +59,7 @@ namespace BasketGame.Core.Game
                 player.Abort();
 
             // This signal is used for timeout case
-            _finilizeEvent.Set();
+            _finalizeEvent.Set();
 
             Thread.CurrentThread.Abort();
         }

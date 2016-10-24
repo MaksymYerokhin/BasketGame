@@ -1,4 +1,4 @@
-﻿namespace BasketGame.Core.Players
+﻿namespace BasketGame.Core.Game
 {
     public enum PlayerType
     {
