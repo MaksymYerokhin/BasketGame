@@ -9,4 +9,3 @@ C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Core\bin\Debug\Basket
 C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Core\bin\Debug\BasketGame.pdb
 C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Core\obj\Debug\BasketGame.dll
 C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Core\obj\Debug\BasketGame.pdb
-C:\Users\Maxim Yerokhin\Source\Repos\BasketGame\BasketGame.Core\obj\Debug\BasketGame.Core.csprojResolveAssemblyReference.cache
