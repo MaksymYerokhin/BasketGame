@@ -4,6 +4,10 @@ using BasketGame.Core.Game;
 
 namespace BasketGame.Core.GuessStrategies
 {
+    /// <summary>
+    /// Takes numbers iteratively but memorizes and skips already guessed
+    /// numbers, own or other players.
+    /// </summary>
     public class ThoroughMemorizeGuessStrategy : ThoroughGuessStrategy, ICheaterStrategy
     {
         private List<int> _memorizedNumbers = new List<int>();

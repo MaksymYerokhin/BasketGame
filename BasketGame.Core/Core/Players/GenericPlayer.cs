@@ -5,19 +5,25 @@ using BasketGame.Core.Game;
 
 namespace BasketGame.Core.Players
 {
+    /// <summary>
+    /// Provides common logic for all players
+    /// </summary>
+    /// <typeparam name="TGuessStrategy">Guess Strategy assigned to specific object</typeparam>
     public abstract class GenericPlayer<TGuessStrategy>
         where TGuessStrategy : IGuessStrategy
     {
         private Thread _executingThread;
-
-        private object _sync;
-
+        
         protected TGuessStrategy _guessStrategy;
 
         public string Name { get; private set; }
 
         public event EventHandler<PlayerGuessEventArgs> OnNumberGueesed;
 
+        /// <summary>
+        /// This method is being executed in a separate thread
+        /// and handles the process of current player guessing
+        /// </summary>
         protected virtual void ThreadProc()
         {
             while (_guessStrategy.canGuess)
@@ -37,12 +43,15 @@ namespace BasketGame.Core.Players
             _executingThread = new Thread(ThreadProc);
         }
 
-        public void Start(GameRestriction g, object sync)
+        public void Start(GameRestriction g)
         {
-            _sync = sync;
             _executingThread.Start();
         }
 
+        /// <summary>
+        /// Prevents redundant guessing when game is already finished
+        /// but players are not aborted yet
+        /// </summary>
         public void StopGuessing()
         {
             _guessStrategy.canGuess = false;
@@ -51,11 +60,11 @@ namespace BasketGame.Core.Players
         public void Wait(int delta)
         {
             // This method is raised in event handler
-            // so it is _executingThread there
+            // so here there is _executingThread context
             Thread.Sleep(delta);
         }
 
-        public void Abort()
+        public void Stop()
         {
             var thread = _executingThread;
             if (thread != null)

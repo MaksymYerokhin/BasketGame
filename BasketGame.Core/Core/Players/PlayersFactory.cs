@@ -5,6 +5,9 @@ using System.Collections.Generic;
 
 namespace BasketGame.Core.Players
 {
+    /// <summary>
+    /// Creates the player instance according to desired player type.
+    /// </summary>
     public static class PlayersFactory
     {
         private static readonly Dictionary<PlayerType, Func<string, GenericPlayer<IGuessStrategy>>> playerCreators = new Dictionary<PlayerType, Func<string, GenericPlayer<IGuessStrategy>>>();

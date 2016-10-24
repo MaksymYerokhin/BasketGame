@@ -5,8 +5,16 @@ using System.Threading;
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Tracks players guesses, waits the end of the game, making changes to State
+    /// </summary>
     public partial class Game
     {
+        /// <summary>
+        /// Handles all players guesses and makes related changes in game state
+        /// </summary>
+        /// <param name="sender">Object which emitted the event</param>
+        /// <param name="args">Event arguments</param>
         private void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             var player = sender as GenericPlayer<IGuessStrategy>;
@@ -37,6 +45,9 @@ namespace BasketGame.Core.Game
                     }
                     else
                     {
+                        // Here game is finishing, no sense to guess any more
+                        // So we prevent guessing for players threads that are
+                        // not aborted yet
                         StopPlayersGuessing();
                         // This signal is used for attempts exceeded case
                         _finalizeEvent.Set();
@@ -46,9 +57,14 @@ namespace BasketGame.Core.Game
                 player.Wait(currentDelta);
             }
         }
-
+        
+        /// <summary>
+        /// This method is being executed in a separate thread
+        /// and handles the end of the game
+        /// </summary>
         private void FinalizeProc()
         {
+            // Waits until time is out or the game ends by win or by attempts
             _finalizeEvent.WaitOne(Restriction.MaxMilliseconds);
             lock (State)
             {
@@ -56,7 +72,7 @@ namespace BasketGame.Core.Game
             }
 
             foreach (var player in Players)
-                player.Abort();
+                player.Stop();
 
             // This signal is used for timeout case
             _finalizeEvent.Set();
@@ -64,6 +80,10 @@ namespace BasketGame.Core.Game
             Thread.CurrentThread.Abort();
         }
 
+        /// <summary>
+        /// Prevents redundant guessing when game is already finished
+        /// but players are not aborted yet
+        /// </summary>
         private void StopPlayersGuessing()
         {
             foreach (var player in Players)

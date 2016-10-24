@@ -3,6 +3,9 @@ using BasketGame.Core.Players;
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Represents current state of the game
+    /// </summary>
     public class GameState
     {
         public int AttemptsNumber;

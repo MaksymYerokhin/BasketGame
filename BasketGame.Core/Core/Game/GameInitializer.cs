@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Initializes the instance before starting to play the game
+    /// </summary>
     public partial class Game
     {
         public void Initialize(ICollection<PlayerInfo> inputs, GameRestriction restriction)
@@ -34,6 +37,7 @@ namespace BasketGame.Core.Game
                 newPlayer.OnNumberGueesed += OnNumberGuessedHandler;
             }
 
+            // All cheaters are subscribed to all players guess events
             foreach (var player in Players)
             {
                 var cheaterPlayer = player as GenericCheaterPlayer;
@@ -42,8 +46,7 @@ namespace BasketGame.Core.Game
                     cheaterPlayer.SubscribeToOtherPlayersGuesses(Players);
                 }
             }
-
-
+            
             State.Initialized = true;
         }
     }

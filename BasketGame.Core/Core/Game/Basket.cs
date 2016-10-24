@@ -2,6 +2,9 @@
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Represents the object of basket
+    /// </summary>
     public class Basket
     {
         public readonly int Weight;

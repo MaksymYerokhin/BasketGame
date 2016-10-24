@@ -1,5 +1,8 @@
 ﻿namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Initial player data, represents input
+    /// </summary>
     public class PlayerInfo
     {
         public readonly string Name;

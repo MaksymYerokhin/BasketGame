@@ -6,10 +6,11 @@ using System.Threading;
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Provides basic fields and methods needed for game logic
+    /// </summary>
     public partial class Game
     {
-        private object _sync = new object();
-
         private Basket _basket;
 
         private ManualResetEvent _finalizeEvent;
@@ -37,7 +38,7 @@ namespace BasketGame.Core.Game
                 _finilizerThread.Start();
 
                 foreach (var player in Players)
-                    player.Start(Restriction, _sync);
+                    player.Start(Restriction);
             }
             else
             {

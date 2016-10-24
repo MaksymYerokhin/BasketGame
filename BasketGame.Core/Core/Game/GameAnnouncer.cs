@@ -2,6 +2,9 @@
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Forms game data in string representation
+    /// </summary>
     public class GameAnnouncer : IGameAnnouncer
     {
         private readonly Basket _basket;

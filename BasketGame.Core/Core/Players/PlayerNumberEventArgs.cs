@@ -2,6 +2,9 @@
 
 namespace BasketGame.Core.Players
 {
+    /// <summary>
+    /// Data passed by guess event
+    /// </summary>
     public class PlayerGuessEventArgs : EventArgs
     {
         public readonly int GuessedNumber;

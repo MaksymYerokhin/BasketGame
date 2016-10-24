@@ -2,6 +2,9 @@
 
 namespace BasketGame.Core.Game
 {
+    /// <summary>
+    /// Contains all game restrictions
+    /// </summary>
     public class GameRestriction
     {
         public readonly int MinPlayers;
