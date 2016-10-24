@@ -5,7 +5,7 @@ namespace BasketGame.Core.Players
 {
     public abstract class GenericCheaterPlayer : GenericPlayer<IGuessStrategy>, ICheatingListener
     {
-        public GenericCheaterPlayer(string name, ICheaterStrategy guessStrategy) : base(name, guessStrategy)
+        protected GenericCheaterPlayer(string name, ICheaterStrategy guessStrategy) : base(name, guessStrategy)
         {
         }
 
@@ -14,7 +14,7 @@ namespace BasketGame.Core.Players
             players.ForEach(player => {
                 var guessStrategy = _guessStrategy as ICheaterStrategy;
                 if (guessStrategy != null) {
-                    player.OnNumberGueesed += guessStrategy.OnNumberGuessedHandler;
+                    player.OnNumberGuessed += guessStrategy.OnNumberGuessedHandler;
                 }
             });
         }

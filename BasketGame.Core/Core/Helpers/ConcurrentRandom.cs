@@ -7,13 +7,13 @@ namespace BasketGame.Core.Helpers
     /// </summary>
     public static class ConcurrentRandom
     {
-        private static Random random = new Random(Environment.TickCount);
+        private static readonly Random _random = new Random(Environment.TickCount);
 
         public static int Generate(int min, int max)
         {
-            lock (random)
+            lock (_random)
             {
-                return random.Next(min, max);
+                return _random.Next(min, max);
             }
         }
     }

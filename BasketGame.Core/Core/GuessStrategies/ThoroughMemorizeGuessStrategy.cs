@@ -10,7 +10,7 @@ namespace BasketGame.Core.GuessStrategies
     /// </summary>
     public class ThoroughMemorizeGuessStrategy : ThoroughGuessStrategy, ICheaterStrategy
     {
-        private List<int> _memorizedNumbers = new List<int>();
+        private readonly List<int> _memorizedNumbers = new List<int>();
 
         public ThoroughMemorizeGuessStrategy(GameRestriction res) : base(res)
         {
@@ -19,11 +19,14 @@ namespace BasketGame.Core.GuessStrategies
         public override int GuessNumber()
         {
             int guessedNumber;
-            do
+            lock (_memorizedNumbers)
             {
-                guessedNumber = base.GuessNumber();
+                do
+                {
+                    guessedNumber = base.GuessNumber();
+                }
+                while (_memorizedNumbers.Contains(guessedNumber));
             }
-            while (_memorizedNumbers.Contains(guessedNumber));
             return guessedNumber;
         }
 

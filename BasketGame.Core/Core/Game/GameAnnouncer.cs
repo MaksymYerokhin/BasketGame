@@ -17,15 +17,15 @@ namespace BasketGame.Core.Game
         {
             var hasWinner = state.Winner != null;
             var result = hasWinner
-                ? String.Format("The winner: {0}.\nTotal attempts number: {1}", state.Winner.Name, state.AttemptsNumber)
-                : String.Format("The closest to victory was: {0}\nBest guess: {1}", state.ClosestPlayer.Name, state.ClosestGuess.ToString());
+                ? $"The winner: {state.Winner.Name}.\nTotal attempts number: {state.AttemptsNumber}"
+                : $"The closest to victory was: {state.ClosestPlayer.Name}\nBest guess: {state.ClosestGuess.ToString()}";
 
             return result;
         }
 
         public string AnnounceInitialData()
         {
-            return String.Format("The real weight of basket: {0}\n", _basket.Weight.ToString());
+            return $"The real weight of basket: {_basket.Weight.ToString()}\n";
         }
     }
 }

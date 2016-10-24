@@ -17,7 +17,7 @@ namespace BasketGame.Core.Game
 
         private Thread _finilizerThread;
 
-        private readonly GameState State;
+        private readonly GameState _state;
 
         public IGameAnnouncer Announcer;
 
@@ -27,12 +27,12 @@ namespace BasketGame.Core.Game
 
         public Game()
         {
-            State = new GameState();
+            _state = new GameState();
         }
 
         public string Play()
         {
-            if (State.Initialized && !_finilizerThread.IsAlive)
+            if (_state.Initialized && !_finilizerThread.IsAlive)
             {
                 _finalizeEvent.Reset();
                 _finilizerThread.Start();
@@ -46,15 +46,13 @@ namespace BasketGame.Core.Game
             }
 
             _finalizeEvent.WaitOne();
-            return Announcer.AnnounceFinalData(State);
+            return Announcer.AnnounceFinalData(_state);
         }
 
         public void Stop()
         {
             if (_finalizeEvent != null && _finilizerThread != null && _finilizerThread.IsAlive)
-            {
                 _finalizeEvent.Set();
-            }
         }
 
         ~Game() {

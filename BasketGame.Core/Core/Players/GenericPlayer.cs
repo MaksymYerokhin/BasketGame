@@ -16,9 +16,9 @@ namespace BasketGame.Core.Players
         
         protected TGuessStrategy _guessStrategy;
 
-        public string Name { get; private set; }
+        public string Name { get; }
 
-        public event EventHandler<PlayerGuessEventArgs> OnNumberGueesed;
+        public event EventHandler<PlayerGuessEventArgs> OnNumberGuessed;
 
         /// <summary>
         /// This method is being executed in a separate thread
@@ -26,17 +26,14 @@ namespace BasketGame.Core.Players
         /// </summary>
         protected virtual void ThreadProc()
         {
-            while (_guessStrategy.canGuess)
+            while (_guessStrategy.CanGuess)
             {
                 var number = _guessStrategy.GuessNumber();
-                if (OnNumberGueesed != null)
-                {
-                    OnNumberGueesed(this, new PlayerGuessEventArgs(number, this.Name));
-                }
+                OnNumberGuessed?.Invoke(this, new PlayerGuessEventArgs(number, Name));
             }
         }
 
-        public GenericPlayer(string name, TGuessStrategy guessStrategy)
+        protected GenericPlayer(string name, TGuessStrategy guessStrategy)
         {
             Name = name;
             _guessStrategy = guessStrategy;
@@ -54,7 +51,7 @@ namespace BasketGame.Core.Players
         /// </summary>
         public void StopGuessing()
         {
-            _guessStrategy.canGuess = false;
+            _guessStrategy.CanGuess = false;
         }
 
         public void Wait(int delta)

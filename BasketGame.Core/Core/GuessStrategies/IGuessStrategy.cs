@@ -2,7 +2,7 @@
 {
     public interface IGuessStrategy
     {
-        bool canGuess { get; set; }
+        bool CanGuess { get; set; }
 
         int GuessNumber();
     }

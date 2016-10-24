@@ -6,7 +6,7 @@ namespace BasketGame.Core.Players
     {
         public MemoryPlayer(string name, MemorizeGuessStrategy r) : base(name, r)
         {
-            this.OnNumberGueesed += r.OnNumberGuessedHandler;
+            OnNumberGuessed += r.OnNumberGuessedHandler;
         }
     }
 }

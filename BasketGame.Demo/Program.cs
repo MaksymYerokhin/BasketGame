@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace BasketGame.Demo
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             var game = new Game();
             Console.WriteLine("Players types:\n 0 - Thorough\n 1 - Memory\n 2 - Random\n 3 - Cheater\n 4 - Thorough Cheater\n");
@@ -14,11 +14,11 @@ namespace BasketGame.Demo
             var playersNumber = Convert.ToInt32(Console.ReadLine());
 
             var players = new List<PlayerInfo>(playersNumber);
-            for (int i = 0; i < playersNumber; i++)
+            for (var i = 0; i < playersNumber; i++)
             {
-                Console.Write(String.Format("Enter Player {0} name: ", i + 1));
+                Console.Write($"Enter Player {i + 1} name: ");
                 var name = Console.ReadLine();
-                Console.Write(String.Format("Enter Player {0} type: ", i + 1));
+                Console.Write($"Enter Player {i + 1} type: ");
                 var type = (PlayerType)Convert.ToInt32(Console.ReadLine());
                 players.Add(new PlayerInfo(name, type));
             }

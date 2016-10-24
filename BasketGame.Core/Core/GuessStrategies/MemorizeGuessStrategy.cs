@@ -33,7 +33,8 @@ namespace BasketGame.Core.GuessStrategies
         public override int GuessNumber()
         {
             var randomIndex = ConcurrentRandom.Generate(0, _numbersToGuess.Count - 1);
-            return _numbersToGuess[randomIndex];
+            lock (_numbersToGuess)
+                return _numbersToGuess[randomIndex];
         }
 
         /// <summary>

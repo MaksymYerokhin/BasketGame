@@ -34,20 +34,17 @@ namespace BasketGame.Core.Game
             {
                 var newPlayer = PlayersFactory.GetPlayer(input.Name, input.PlayerType);
                 Players.Add(newPlayer);
-                newPlayer.OnNumberGueesed += OnNumberGuessedHandler;
+                newPlayer.OnNumberGuessed += OnNumberGuessedHandler;
             }
 
             // All cheaters are subscribed to all players guess events
             foreach (var player in Players)
             {
                 var cheaterPlayer = player as GenericCheaterPlayer;
-                if (cheaterPlayer != null)
-                {
-                    cheaterPlayer.SubscribeToOtherPlayersGuesses(Players);
-                }
+                cheaterPlayer?.SubscribeToOtherPlayersGuesses(Players);
             }
             
-            State.Initialized = true;
+            _state.Initialized = true;
         }
     }
 }

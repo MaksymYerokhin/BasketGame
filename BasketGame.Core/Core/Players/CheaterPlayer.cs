@@ -2,7 +2,7 @@
 
 namespace BasketGame.Core.Players
 {
-    public class CheaterPlayer : GenericCheaterPlayer, ICheatingListener
+    public class CheaterPlayer : GenericCheaterPlayer
     {
         public CheaterPlayer(string name, MemorizeGuessStrategy r) : base(name, r)
         {

@@ -18,44 +18,42 @@ namespace BasketGame.Core.Game
         private void OnNumberGuessedHandler(object sender, PlayerGuessEventArgs args)
         {
             var player = sender as GenericPlayer<IGuessStrategy>;
-            if (player != null)
-            {
-                var currentDelta = Math.Abs(_basket.Weight - args.GuessedNumber);
+            if (player == null) return;
+            var currentDelta = Math.Abs(_basket.Weight - args.GuessedNumber);
 
-                lock (State)
+            lock (_state)
+            {
+                if (!_state.Finished && _state.Winner == null && _state.AttemptsNumber < Restriction.MaxAttempts)
                 {
-                    if (!State.Finished && State.Winner == null && State.AttemptsNumber < Restriction.MaxAttempts)
+                    _state.AttemptsNumber++;
+                    if (args.GuessedNumber == _basket.Weight)
                     {
-                        State.AttemptsNumber++;
-                        if (args.GuessedNumber == _basket.Weight)
-                        {
-                            State.Winner = player;
-                            // This signal is used for victory case
-                            _finalizeEvent.Set();
-                        }
-                        else
-                        {
-                            var previousDelta = Math.Abs(_basket.Weight - State.ClosestGuess);
-                            if (previousDelta > currentDelta || State.ClosestPlayer == null)
-                            {
-                                State.ClosestPlayer = player;
-                                State.ClosestGuess = args.GuessedNumber;
-                            }
-                        }
+                        _state.Winner = player;
+                        // This signal is used for victory case
+                        _finalizeEvent.Set();
                     }
                     else
                     {
-                        // Here game is finishing, no sense to guess any more
-                        // So we prevent guessing for players threads that are
-                        // not aborted yet
-                        StopPlayersGuessing();
-                        // This signal is used for attempts exceeded case
-                        _finalizeEvent.Set();
+                        var previousDelta = Math.Abs(_basket.Weight - _state.ClosestGuess);
+                        if (previousDelta > currentDelta || _state.ClosestPlayer == null)
+                        {
+                            _state.ClosestPlayer = player;
+                            _state.ClosestGuess = args.GuessedNumber;
+                        }
                     }
                 }
-
-                player.Wait(currentDelta);
+                else
+                {
+                    // Here game is finishing, no sense to guess any more
+                    // So we prevent guessing for players threads that are
+                    // not aborted yet
+                    StopPlayersGuessing();
+                    // This signal is used for attempts exceeded case
+                    _finalizeEvent.Set();
+                }
             }
+
+            player.Wait(currentDelta);
         }
         
         /// <summary>
@@ -66,9 +64,9 @@ namespace BasketGame.Core.Game
         {
             // Waits until time is out or the game ends by win or by attempts
             _finalizeEvent.WaitOne(Restriction.MaxMilliseconds);
-            lock (State)
+            lock (_state)
             {
-                State.Finished = true;
+                _state.Finished = true;
             }
 
             foreach (var player in Players)
@@ -76,8 +74,6 @@ namespace BasketGame.Core.Game
 
             // This signal is used for timeout case
             _finalizeEvent.Set();
-
-            Thread.CurrentThread.Abort();
         }
 
         /// <summary>
