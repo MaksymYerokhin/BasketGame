@@ -16,17 +16,17 @@ namespace BasketGame.Core.Game
             if (inputs.Count < restriction.MinPlayers ||
                 inputs.Count > restriction.MaxPlayers)
             {
-                throw new ArgumentException("Players count does not meet minimum or maximum requirement", "inputs");
+                throw new ArgumentException("Players count does not meet minimum or maximum requirement", nameof(inputs));
             }
 
             Restriction = restriction;
 
             _basket = new Basket(Restriction.MinWeight, Restriction.MaxWeight);
-            Announcer = new GameAnnouncer(_basket);
             Players = new List<GenericPlayer<IGuessStrategy>>(inputs.Count);
 
             _finilizerThread = new Thread(FinalizeProc);
             _finalizeEvent = new ManualResetEvent(false);
+            _state = new GameState();
 
             PlayersFactory.PreparePlayersType(restriction);
 
@@ -44,7 +44,15 @@ namespace BasketGame.Core.Game
                 cheaterPlayer?.SubscribeToOtherPlayersGuesses(Players);
             }
             
-            _state.Initialized = true;
+            _initialized = true;
+        }
+
+        public int GetBasketWeight()
+        {
+            if (_initialized)
+                return _basket.Weight;
+
+            throw new InvalidOperationException("Game in not initialized");
         }
     }
 }

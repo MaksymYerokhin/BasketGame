@@ -27,9 +27,9 @@ namespace BasketGame.Demo
             var players = ReadPlayersInfo(playersNumber);
 
             game.Initialize(players, restriction);
-            Console.WriteLine(game.Announcer.AnnounceInitialData());
-            var result = game.Play();
-            Console.WriteLine(result);
+            Console.WriteLine($"Game is started! The real basket weight: {game.GetBasketWeight()}\n");
+            var resultState = game.Play();
+            Console.WriteLine(resultState.ToString());
         }
 
         private static void ShowPlayerTypes()
@@ -70,13 +70,29 @@ namespace BasketGame.Demo
             var players = new List<PlayerInfo>(playersNumber);
             for (var i = 0; i < playersNumber; i++)
             {
-                Console.Write($"Enter Player {i + 1} name: ");
-                var name = Console.ReadLine();
+                var name = ReadPlayerName(i);
                 var inputType = ReadPlayerType(i);
 
                 players.Add(new PlayerInfo(name, inputType));
             }
             return players;
+        }
+
+        private static string ReadPlayerName(int i)
+        {
+            bool isValid;
+            string result;
+
+            do
+            {
+                Console.Write($"Enter Player {i + 1} name: ");
+                result = Console.ReadLine();
+                isValid = !string.IsNullOrWhiteSpace(result);
+                if (!isValid)
+                    Console.WriteLine("Name must contain some visible symbols.");
+            } while (!isValid);
+
+            return result;
         }
 
         private static PlayerType ReadPlayerType(int i)

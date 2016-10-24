@@ -48,11 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Game\Basket.cs" />
-    <Compile Include="Core\Game\GameAnnouncer.cs" />
     <Compile Include="Core\Game\GameInitializer.cs" />
     <Compile Include="Core\Game\GameState.cs" />
     <Compile Include="Core\Game\GameTracker.cs" />
-    <Compile Include="Core\Game\IGameAnnouncer.cs" />
     <Compile Include="Core\GuessStrategies\GenericGuessStrategy.cs" />
     <Compile Include="Core\GuessStrategies\ICheaterStrategy.cs" />
     <Compile Include="Core\GuessStrategies\MemorizeGuessStrategy.cs" />

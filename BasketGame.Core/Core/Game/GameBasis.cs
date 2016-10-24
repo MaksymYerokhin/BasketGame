@@ -17,22 +17,19 @@ namespace BasketGame.Core.Game
 
         private Thread _finilizerThread;
 
-        private readonly GameState _state;
+        private GameState _state;
 
-        public IGameAnnouncer Announcer;
+        private bool _initialized;
+
+        private bool _finished;
 
         public List<GenericPlayer<IGuessStrategy>> Players { get; private set; }
 
         public GameRestriction Restriction { get; private set; }
-
-        public Game()
+        
+        public GameState Play()
         {
-            _state = new GameState();
-        }
-
-        public string Play()
-        {
-            if (_state.Initialized && !_finilizerThread.IsAlive)
+            if (_initialized && !_finilizerThread.IsAlive)
             {
                 _finalizeEvent.Reset();
                 _finilizerThread.Start();
@@ -46,7 +43,7 @@ namespace BasketGame.Core.Game
             }
 
             _finalizeEvent.WaitOne();
-            return Announcer.AnnounceFinalData(_state);
+            return _state;
         }
 
         public void Stop()

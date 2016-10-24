@@ -10,14 +10,20 @@ namespace BasketGame.Core.Game
     {
         public int AttemptsNumber;
 
-        public bool Initialized;
-
-        public bool Finished;
-
         public GenericPlayer<IGuessStrategy> Winner;
 
         public GenericPlayer<IGuessStrategy> ClosestPlayer;
 
         public int ClosestGuess;
+
+        public override string ToString()
+        {
+            var hasWinner = Winner != null;
+            var result = hasWinner
+                ? $"The winner: {Winner.Name}.\nTotal attempts number: {AttemptsNumber}."
+                : $"The closest to victory was: {ClosestPlayer.Name}.\nBest guess: {ClosestGuess}.";
+
+            return result;
+        }
     }
 }

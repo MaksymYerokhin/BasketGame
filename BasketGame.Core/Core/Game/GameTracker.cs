@@ -23,7 +23,7 @@ namespace BasketGame.Core.Game
 
             lock (_state)
             {
-                if (!_state.Finished && _state.Winner == null && _state.AttemptsNumber < Restriction.MaxAttempts)
+                if (!_finished && _state.Winner == null && _state.AttemptsNumber < Restriction.MaxAttempts)
                 {
                     _state.AttemptsNumber++;
                     if (args.GuessedNumber == _basket.Weight)
@@ -66,7 +66,7 @@ namespace BasketGame.Core.Game
             _finalizeEvent.WaitOne(Restriction.MaxMilliseconds);
             lock (_state)
             {
-                _state.Finished = true;
+                _finished = true;
             }
 
             foreach (var player in Players)
